@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[Nome Sobrenome] | Advocacia</title>
+  <meta name="description" content="Advocacia com atendimento direto: Direito Civil, Família, Trabalho, Empresarial, Consumidor e Previdenciário. Agende sua consulta.">
+  <meta name="theme-color" content="#0E1A2B">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+
+  <style>
+    /* =====================================================
+       1. VARIÁVEIS  (para trocar cores, fontes e espaços,
+          mexa só aqui)
+       ===================================================== */
+    :root {
+      /* Cores */
+      --navy:        #0E1A2B;   /* fundo escuro principal */
+      --navy-soft:   #16263C;   /* painéis sobre o fundo escuro */
+      --accent:      #C2A265;   /* dourado (destaques no fundo escuro) */
+      --accent-dark: #7A5F27;   /* dourado escuro (textos no fundo claro) */
+      --bg:          #EEF1F5;   /* fundo claro */
+      --white:       #FFFFFF;
+      --text:        #1B2635;
+      --text-soft:   #4A586E;
+      --on-dark:     #C3CCDA;   /* texto sobre fundo escuro */
+      --line:        #D3D9E2;
+      --line-dark:   rgba(255, 255, 255, 0.14);
+
+      /* Fontes */
+      --font-title: "Newsreader", Georgia, serif;
+      --font-body:  "Hanken Grotesk", system-ui, sans-serif;
+
+      /* Espaços e largura */
+      --container: 1180px;
+      --gutter:    24px;
+      --section-y: 104px;
+    }
+
+    /* =====================================================
+       2. BASE
+       ===================================================== */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, p, ul, dl, dd, figure { margin: 0; }
+    ul { padding: 0; list-style: none; }
+    address { font-style: normal; }
+    a { color: inherit; text-decoration: none; }
+    a:hover { opacity: 0.85; }
+
+    :focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    /* Link "pular para o conteúdo" (acessibilidade) */
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: -60px;
+      padding: 12px 20px;
+      background: var(--accent);
+      color: var(--navy);
+      font-weight: 600;
+      z-index: 10;
+    }
+    .skip-link:focus { top: 16px; }
+
+    /* =====================================================
+       3. COMPONENTES REUTILIZÁVEIS
+       ===================================================== */
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding-inline: var(--gutter);
+    }
+
+    .section { padding-block: var(--section-y); }
+    .section--light { background: var(--bg); }
+    .section--white { background: var(--white); }
+    .section--dark  { background: var(--navy); color: var(--white); }
+
+    /* Pequeno rótulo acima dos títulos */
+    .eyebrow {
+      margin-bottom: 16px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+    }
+    .section--dark .eyebrow,
+    .hero .eyebrow { color: var(--accent); }
+
+    .title-xl {
+      font-family: var(--font-title);
+      font-weight: 500;
+      font-size: clamp(40px, 6vw, 68px);
+      line-height: 1.06;
+      letter-spacing: -0.01em;
+    }
+
+    .title-lg {
+      font-family: var(--font-title);
+      font-weight: 500;
+      font-size: clamp(32px, 4.4vw, 48px);
+      line-height: 1.12;
+    }
+
+    .lead {
+      font-size: 18px;
+      color: var(--text-soft);
+    }
+
+    /* Botões */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 28px;
+      font-size: 16px;
+      font-weight: 600;
+      border: 1px solid transparent;
+    }
+    .btn--primary    { background: var(--accent); color: var(--navy); }
+    .btn--outline    { border-color: rgba(255, 255, 255, 0.35); color: var(--white); font-weight: 500; }
+    .btn--dark       { background: var(--navy); color: var(--white); min-height: 48px; padding-inline: 24px; }
+    .btn--small      { min-height: 44px; padding-inline: 20px; border-color: var(--accent); color: var(--accent); }
+    .btn--large      { min-height: 56px; padding-inline: 32px; font-size: 17px; }
+
+    /* =====================================================
+       4. CABEÇALHO + HERO
+       ===================================================== */
+    .site-header {
+      background: var(--navy);
+      color: var(--white);
+    }
+    .site-header .container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px 32px;
+      padding-block: 28px;
+      border-bottom: 1px solid var(--line-dark);
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+    .brand__name {
+      font-family: var(--font-title);
+      font-size: 24px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+    .brand__tag {
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #B4BECE;
+    }
+
+    .main-nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px 32px;
+      font-size: 15px;
+    }
+    .main-nav a:not(.btn) { color: #D5DBE5; }
+
+    .hero {
+      background: var(--navy);
+      color: var(--white);
+    }
+    .hero .container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 56px;
+      padding-block: 88px 104px;
+    }
+    .hero__content { flex: 1 1 480px; min-width: 0; }
+    .hero__content .eyebrow { margin-bottom: 24px; }
+    .hero__content .title-xl { margin-bottom: 28px; }
+    .hero__text {
+      max-width: 540px;
+      margin-bottom: 40px;
+      font-size: 19px;
+      color: var(--on-dark);
+    }
+    .hero__actions { display: flex; flex-wrap: wrap; gap: 16px; }
+
+    .hero__photo {
+      flex: 1 1 300px;
+      max-width: 420px;
+      min-width: 0;
+    }
+    .photo-frame {
+      aspect-ratio: 4 / 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: var(--navy-soft);
+      border: 1px solid rgba(194, 162, 101, 0.45);
+      overflow: hidden;
+    }
+    .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-frame__initials {
+      font-family: var(--font-title);
+      font-size: 88px;
+      line-height: 1;
+      color: var(--accent);
+    }
+    .photo-frame__caption {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #B4BECE;
+    }
+
+    /* =====================================================
+       5. ÁREAS DE ATUAÇÃO
+       ===================================================== */
+    .section-intro { max-width: 720px; }
+    .section-intro .title-lg { margin-bottom: 20px; }
+    .section-intro .lead { max-width: 620px; margin-bottom: 56px; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      height: 100%;
+      padding: 36px 32px;
+      background: var(--white);
+      border-top: 3px solid var(--navy);
+    }
+    .card__icon { width: 32px; height: 32px; stroke: var(--navy); }
+    .card__title {
+      margin: 20px 0 10px;
+      font-family: var(--font-title);
+      font-weight: 500;
+      font-size: 26px;
+    }
+    .card__text { color: var(--text-soft); }
+
+    /* =====================================================
+       6. SOBRE
+       ===================================================== */
+    .about {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 64px;
+    }
+    .about__heading { flex: 1 1 380px; min-width: 0; }
+    .about__body    { flex: 1 1 440px; min-width: 0; }
+    .about__body p  { font-size: 18px; color: #2C3A4F; }
+    .about__body p + p { margin-top: 20px; }
+
+    .facts {
+      margin-top: 40px;
+      border-top: 1px solid var(--line);
+    }
+    .facts__row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 24px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .facts dt { flex: 0 0 160px; font-weight: 600; color: var(--navy); }
+    .facts dd { flex: 1 1 240px; color: var(--text-soft); }
+
+    /* =====================================================
+       7. LOCALIZAÇÃO
+       ===================================================== */
+    .location .title-lg { margin-bottom: 56px; max-width: 720px; }
+    .location__grid { display: flex; flex-wrap: wrap; gap: 24px; }
+
+    .location__info {
+      flex: 1 1 340px;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      padding: 40px 36px;
+      background: var(--white);
+    }
+    .location__info dt {
+      margin-bottom: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+    }
+    .location__info dd { font-size: 18px; }
+
+    .location__map {
+      flex: 1.4 1 420px;
+      min-width: 0;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 32px;
+      background-color: #DCE2EA;
+      background-image:
+        linear-gradient(rgba(14, 26, 43, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(14, 26, 43, 0.07) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .location__pin { width: 48px; height: 48px; fill: var(--navy); }
+    .location__map-title {
+      text-align: center;
+      font-family: var(--font-title);
+      font-size: 24px;
+      color: var(--navy);
+    }
+
+    /* =====================================================
+       8. CONTATO + RODAPÉ
+       ===================================================== */
+    .contact { padding-bottom: 80px; }
+    .contact .container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .contact__content { flex: 1 1 460px; min-width: 0; }
+    .contact__content .title-lg {
+      margin-bottom: 20px;
+      font-size: clamp(32px, 4.8vw, 54px);
+      line-height: 1.1;
+    }
+    .contact__content p:last-child {
+      max-width: 520px;
+      font-size: 18px;
+      color: var(--on-dark);
+    }
+    .contact__actions {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-width: 260px;
+    }
+
+    .site-footer {
+      background: var(--navy);
+      color: #9AA6B8;
+      font-size: 14px;
+    }
+    .site-footer .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px 24px;
+      padding-block: 28px 40px;
+      border-top: 1px solid var(--line-dark);
+    }
+
+    /* =====================================================
+       9. AJUSTES PARA CELULAR
+       ===================================================== */
+    @media (max-width: 640px) {
+      :root { --section-y: 72px; }
+      .hero .container { padding-block: 56px 72px; gap: 40px; }
+      .about { gap: 40px; }
+      .location__info { padding: 32px 24px; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- ================= CABEÇALHO ================= -->
+  <header class="site-header" id="topo">
+    <div class="container">
+      <a class="brand" href="#topo" aria-label="Ir para o topo">
+        <!-- EDITE: nome do advogado -->
+        <span class="brand__name">Mendonça</span>
+        <span class="brand__tag">Advocacia</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a href="#servicos">Áreas de atuação</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#localizacao">Localização</a>
+        <a class="btn btn--small" href="#contato">Falar com o escritório</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- ================= 1. HERO ================= -->
+    <section class="hero" aria-labelledby="hero-titulo">
+      <div class="container">
+        <div class="hero__content">
+          <!-- EDITE: número da OAB e estado -->
+          <p class="eyebrow">OAB/SP nº [000.000]</p>
+          <h1 class="title-xl" id="hero-titulo">Seu caso tratado com clareza, estratégia e atenção de verdade.</h1>
+          <p class="hero__text">Atendimento jurídico direto com o advogado responsável, do primeiro contato até a decisão final. Sem juridiquês e sem promessas vazias.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#contato">Agendar uma consulta</a>
+            <a class="btn btn--outline" href="#servicos">Ver áreas de atuação</a>
+          </div>
+        </div>
+
+        <figure class="hero__photo">
+          <div class="photo-frame">
+            <!-- EDITE: para usar a foto real, apague o bloco "placeholder" abaixo
+                 e descomente a linha da imagem:
+                 <img src="foto-advogado.jpg" alt="Retrato do advogado [Nome Sobrenome]"> -->
+            <!-- placeholder -->
+            <span class="photo-frame__initials" aria-hidden="true">NS</span>
+            <span class="photo-frame__caption">Foto do advogado</span>
+            <!-- /placeholder -->
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ================= 2. ÁREAS DE ATUAÇÃO ================= -->
+    <section class="section section--light" id="servicos" aria-labelledby="servicos-titulo">
+      <div class="container">
+        <div class="section-intro">
+          <p class="eyebrow">Áreas de atuação</p>
+          <h2 class="title-lg" id="servicos-titulo">Onde o escritório pode te ajudar</h2>
+          <p class="lead">Cada área é conduzida com análise individual do caso. Não existe resposta pronta, existe a estratégia certa para a sua situação.</p>
+        </div>
+
+        <!-- Para adicionar ou remover um serviço, copie ou apague um bloco <li> -->
+        <ul class="cards">
+
+          <li>
+            <article class="card">
+              <svg class="card__icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 21h14"/><path d="M4 7h16"/><path d="M4 7l-2 7a3 3 0 0 0 4 0z"/><path d="M20 7l-2 7a3 3 0 0 0 4 0z"/></svg>
+              <h3 class="card__title">Direito Civil</h3>
+              <p class="card__text">Contratos, indenizações, cobranças, responsabilidade civil e disputas patrimoniais, da negociação ao processo.</p>
+            </article>
+          </li>
+
+          <li>
+            <article class="card">
+              <svg class="card__icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M15.5 14.2c.5-.2 1-.2 1.5-.2 2.2 0 4 1.8 4 4v2"/></svg>
+              <h3 class="card__title">Direito de Família</h3>
+              <p class="card__text">Divórcio, guarda, pensão alimentícia, inventário e partilha, com sensibilidade e foco em resolver sem desgaste.</p>
+            </article>
+          </li>
+
+          <li>
+            <article class="card">
+              <svg class="card__icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="1"/><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/><path d="M3 13h18"/></svg>
+              <h3 class="card__title">Direito do Trabalho</h3>
+              <p class="card__text">Verbas rescisórias, horas extras, vínculo empregatício e assédio, para trabalhadores e também para empresas.</p>
+            </article>
+          </li>
+
+          <li>
+            <article class="card">
+              <svg class="card__icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/><path d="M9 11h.01M15 11h.01"/></svg>
+              <h3 class="card__title">Direito Empresarial</h3>
+              <p class="card__text">Abertura e estruturação de empresas, contratos comerciais, societário e prevenção de passivos.</p>
+            </article>
+          </li>
+
+          <li>
+            <article class="card">
+              <svg class="card__icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+              <h3 class="card__title">Direito do Consumidor</h3>
+              <p class="card__text">Cobranças indevidas, negativação, problemas com bancos, planos de saúde e serviços que não foram entregues.</p>
+            </article>
+          </li>
+
+          <li>
+            <article class="card">
+              <svg class="card__icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h8l4 4v14H7z"/><path d="M15 3v4h4"/><path d="M10 12h6M10 16h6"/></svg>
+              <h3 class="card__title">Direito Previdenciário</h3>
+              <p class="card__text">Aposentadorias, auxílios, pensão por morte e revisão de benefícios negados ou concedidos a menor.</p>
+            </article>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================= 3. SOBRE ================= -->
+    <section class="section section--white" id="sobre" aria-labelledby="sobre-titulo">
+      <div class="container about">
+        <div class="about__heading">
+          <p class="eyebrow">Sobre o trabalho</p>
+          <h2 class="title-lg" id="sobre-titulo">Advocacia feita de perto, com quem responde pelo seu caso.</h2>
+        </div>
+
+        <div class="about__body">
+          <!-- EDITE: nome e número da OAB -->
+          <p>Sou [Nome Sobrenome], advogado inscrito na OAB/SP sob o nº [000.000]. Atuo na defesa de pessoas e empresas que precisam de alguém que leia o caso com cuidado, explique cada passo e diga com franqueza o que é possível alcançar.</p>
+          <p>Meu compromisso é simples: você sabe em que pé está o processo, quais são os riscos e quanto tempo costuma levar. Quando um acordo resolve melhor do que uma briga longa, eu falo.</p>
+
+          <dl class="facts">
+            <div class="facts__row">
+              <dt>Atendimento direto</dt>
+              <dd>Você fala com o advogado, não com intermediários.</dd>
+            </div>
+            <div class="facts__row">
+              <dt>Transparência</dt>
+              <dd>Honorários combinados por escrito, antes de começar.</dd>
+            </div>
+            <div class="facts__row">
+              <dt>Estratégia</dt>
+              <dd>Cada caso começa pela análise, não por um modelo pronto.</dd>
+            </div>
+            <div class="facts__row">
+              <dt>Formação</dt>
+              <!-- EDITE: formação acadêmica -->
+              <dd>[Faculdade, ano de formatura e pós-graduações]</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4. LOCALIZAÇÃO ================= -->
+    <section class="section section--light location" id="localizacao" aria-labelledby="local-titulo">
+      <div class="container">
+        <p class="eyebrow">Localização</p>
+        <h2 class="title-lg" id="local-titulo">Venha conversar pessoalmente</h2>
+
+        <div class="location__grid">
+          <!-- EDITE: endereço, horário e contatos -->
+          <dl class="location__info">
+            <div>
+              <dt>Endereço</dt>
+              <dd>
+                <address>
+                  [Rua, número, sala]<br>
+                  [Bairro] · [Cidade/UF]<br>
+                  CEP [00000-000]
+                </address>
+              </dd>
+            </div>
+            <div>
+              <dt>Horário de atendimento</dt>
+              <dd>Segunda a sexta, das [00h] às [00h]<br>Com horário marcado</dd>
+            </div>
+            <div>
+              <dt>Contato</dt>
+              <dd>
+                <a href="tel:+5500000000000">[(00) 00000-0000]</a><br>
+                <a href="mailto:contato@seudominio.com.br">[contato@seudominio.com.br]</a>
+              </dd>
+            </div>
+          </dl>
+
+          <div class="location__map">
+            <svg class="location__pin" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+            <p class="location__map-title">Escritório em [Cidade/UF]</p>
+            <!-- EDITE: cole aqui o link do seu endereço no Google Maps -->
+            <a class="btn btn--dark" href="https://www.google.com/maps" target="_blank" rel="noopener">Abrir no Google Maps</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 5. CONTATO ================= -->
+    <section class="section section--dark contact" id="contato" aria-labelledby="contato-titulo">
+      <div class="container">
+        <div class="contact__content">
+          <p class="eyebrow">Primeira conversa</p>
+          <h2 class="title-lg" id="contato-titulo">Conte o que aconteceu. A gente vê o melhor caminho.</h2>
+          <p>Mande uma mensagem e o escritório retorna para marcar uma consulta, presencial ou por videochamada.</p>
+        </div>
+
+        <div class="contact__actions">
+          <!-- EDITE: troque 55 pelo número completo com DDI + DDD, ex.: https://wa.me/5513999999999 -->
+          <a class="btn btn--primary btn--large" href="https://wa.me/55" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+          <a class="btn btn--outline btn--large" href="mailto:contato@seudominio.com.br">Enviar e-mail</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= RODAPÉ ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <small>© 2026 [Nome Sobrenome] · Advocacia · OAB/SP nº [000.000]</small>
+      <small>Informações de caráter institucional, sem promessa de resultado.</small>
+    </div>
+  </footer>
+</body>
+</html>
