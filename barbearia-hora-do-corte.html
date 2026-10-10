@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barbearia Hora do Corte | Praia Grande - SP</title>
+<meta name="description" content="Barbearia Hora do Corte, no Tupiry, em Praia Grande. Corte, barba com navalha, degradê, cortes infantis e atendimento noturno. Nota 5,0 no Google. Agende pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!--
+  ======================================================================
+  COMO EDITAR ESTE SITE (tudo está neste único arquivo)
+  ----------------------------------------------------------------------
+  1. Cores ............ bloco :root logo abaixo (variáveis --blue, --red, --navy)
+  2. Telefone, WhatsApp, Instagram, endereço .... bloco CONFIG no final do arquivo
+  3. Lista de serviços e avaliações ............. blocos SERVICES e REVIEWS no final do arquivo
+  4. Textos ........... é só trocar direto no HTML (procure pela seção: HERO, SOBRE, etc.)
+  5. Fotos ............ procure por "TROQUE A FOTO" e coloque o caminho da imagem em url('...')
+  6. Logo ............. salve a logo como  logo.png  na mesma pasta deste arquivo.
+                        Se o arquivo existir, ele substitui automaticamente a logo desenhada em CSS.
+  ======================================================================
+-->
+
+<style>
+  :root{
+    --blue:#0B4FB9;
+    --blue-dark:#083a8c;
+    --navy:#0B1B36;
+    --red:#E4202B;
+    --white:#ffffff;
+    --soft:#F2F6FC;
+    --ink:#0B1B36;
+    --muted:#55627a;
+    --line:rgba(11,27,54,.10);
+    --radius:22px;
+    --font-head:'Archivo',system-ui,sans-serif;
+    --font-body:'Inter',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:96px}
+  body{font-family:var(--font-body);color:var(--ink);background:var(--white);line-height:1.55;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{font-family:var(--font-head);letter-spacing:-.03em;line-height:1.02}
+  .wrap{width:min(1200px,100% - 40px);margin-inline:auto}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--blue)}
+
+  /* ---------- botões ---------- */
+  .btn{display:inline-flex;align-items:center;gap:.55rem;padding:.85rem 1.4rem;border-radius:999px;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border:1px solid transparent;cursor:pointer;transition:transform .2s,background .2s,color .2s,box-shadow .2s;white-space:nowrap}
+  .btn svg{width:16px;height:16px}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-dark{background:var(--navy);color:#fff}
+  .btn-dark:hover{background:var(--blue)}
+  .btn-light{background:#fff;color:var(--navy);border-color:var(--line)}
+  .btn-light:hover{box-shadow:0 8px 24px rgba(11,27,54,.12)}
+  .btn-red{background:var(--red);color:#fff}
+  .btn-red:hover{background:#c5121c}
+  .btn-outline{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
+  .btn-outline:hover{background:#fff;color:var(--navy)}
+
+  /* ---------- poste de barbeiro (logo + decoração) ---------- */
+  .pole{width:var(--pw,16px);height:var(--ph,46px);border-radius:7px;position:relative;flex:none;overflow:hidden;
+    background:repeating-linear-gradient(135deg,#fff 0 7px,var(--red) 7px 14px,#fff 14px 21px,var(--blue) 21px 28px);
+    box-shadow:inset 0 0 0 1px rgba(11,27,54,.12)}
+  .pole::before,.pole::after{content:"";position:absolute;left:0;right:0;height:16%;background:var(--navy)}
+  .pole::before{top:0}.pole::after{bottom:0}
+
+  /* ---------- logo ---------- */
+  .logo{display:flex;align-items:center;gap:.6rem}
+  .logo img{display:none;height:44px;width:auto}
+  .logo.has-img img{display:block}
+  .logo.has-img .logo-fb{display:none}
+  .logo-fb{display:flex;align-items:center;gap:.55rem}
+  .logo-txt{display:flex;flex-direction:column;line-height:1}
+  .logo-txt small{font-family:var(--font-head);font-weight:700;font-size:.62rem;letter-spacing:.34em;color:var(--navy)}
+  .logo-txt b{font-family:var(--font-head);font-weight:800;font-size:1.28rem;letter-spacing:-.02em;color:var(--blue);margin-top:3px;text-transform:uppercase}
+  .logo-txt b i{font-style:normal;color:var(--red)}
+
+  /* ---------- navbar ---------- */
+  header.top{position:fixed;top:14px;left:0;right:0;z-index:50}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.55rem .6rem .55rem 1.2rem;border-radius:999px;
+    background:rgba(255,255,255,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.8);box-shadow:0 6px 30px rgba(11,27,54,.08)}
+  .nav ul{display:flex;gap:1.8rem;list-style:none}
+  .nav ul a{font-size:.8rem;font-weight:500;color:var(--navy);position:relative}
+  .nav ul a::after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--red);transition:width .25s}
+  .nav ul a:hover::after{width:100%}
+  .nav .btn{padding:.7rem 1.2rem}
+  .burger{display:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;align-items:center;justify-content:center}
+  .burger span,.burger span::before,.burger span::after{display:block;width:16px;height:2px;background:var(--navy);position:relative;content:"";border-radius:2px}
+  .burger span::before{position:absolute;top:-5px}.burger span::after{position:absolute;top:5px}
+  .mobile-menu{display:none}
+
+  /* ---------- HERO ---------- */
+  .hero-shell{padding:14px}
+  .hero{position:relative;border-radius:30px;overflow:hidden;min-height:min(820px,100svh - 28px);padding:150px 0 48px;display:flex;align-items:stretch;
+    background:
+      radial-gradient(60% 55% at 12% 18%,rgba(11,79,185,.28) 0,transparent 70%),
+      radial-gradient(55% 55% at 92% 85%,rgba(228,32,43,.22) 0,transparent 70%),
+      radial-gradient(40% 40% at 60% 10%,rgba(150,190,255,.45) 0,transparent 70%),
+      #eef3fb}
+  .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:2rem;align-items:center;position:relative;z-index:2}
+  .hero-left .eyebrow{display:block;margin-bottom:1.2rem;color:var(--navy);opacity:.75}
+  .hero h1{font-size:clamp(2.7rem,6.2vw,5.6rem);font-weight:600;text-transform:uppercase;color:var(--navy)}
+  .hero h1 em{font-style:normal;color:var(--blue)}
+  .chip{display:inline-block;vertical-align:middle;width:1.55em;height:.78em;border-radius:12px;margin:0 .12em;transform:translateY(-.06em);
+    background:repeating-linear-gradient(135deg,#fff 0 9px,var(--red) 9px 18px,#fff 18px 27px,var(--blue) 27px 36px);box-shadow:inset 0 0 0 1px rgba(11,27,54,.12)}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
+  .hero-desc{max-width:430px;margin-top:2.4rem;font-size:.95rem;color:#2a3a57}
+
+  .hero-right{position:relative;height:100%;min-height:460px}
+  /* TROQUE A FOTO: coloque o caminho da foto em --hero-img, ex: url('fotos/hero.jpg'). Depois pode apagar o bloco .hero-art */
+  .hero-photo{--hero-img:none;position:absolute;inset:0;border-radius:26px;overflow:hidden;background:var(--hero-img) center/cover,linear-gradient(160deg,var(--blue) 0%,var(--navy) 85%);box-shadow:0 30px 70px rgba(11,27,54,.28)}
+  .hero-art{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:2.2rem}
+  .hero-art .pole{--pw:56px;--ph:78%;border-radius:20px}
+  .hero-art .crown{width:110px;color:var(--red);filter:drop-shadow(0 8px 20px rgba(0,0,0,.35))}
+  .hero-art::after{content:"";position:absolute;inset:0;background:radial-gradient(70% 50% at 50% 100%,rgba(228,32,43,.35),transparent 70%)}
+  .stats{position:absolute;right:-6px;bottom:22px;display:grid;gap:.7rem;z-index:3}
+  .stat{background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-radius:18px;padding:.7rem 1.1rem;text-align:right;box-shadow:0 10px 30px rgba(11,27,54,.12);min-width:150px}
+  .stat b{display:block;font-family:var(--font-head);font-size:1.9rem;font-weight:600;letter-spacing:-.03em;line-height:1;color:var(--navy)}
+  .stat b span{color:var(--red)}
+  .stat small{font-size:.68rem;color:var(--muted)}
+
+  /* ---------- seções ---------- */
+  section{padding:110px 0}
+  .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:2.6rem}
+  .sec-head h2{font-size:clamp(2rem,4vw,3.1rem);font-weight:600;max-width:640px}
+  .sec-head p{margin-top:1rem;color:var(--muted);max-width:470px;font-size:.95rem}
+  .arrows{display:flex;gap:.7rem}
+  .arrow{width:62px;height:112px;border-radius:999px;border:1px solid var(--line);background:#fff;cursor:pointer;display:grid;place-items:center;transition:background .2s,color .2s}
+  .arrow:hover{background:var(--navy);color:#fff}
+  .arrow svg{width:18px;height:18px}
+
+  /* carrossel de destaques */
+  .slider{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;scrollbar-width:none}
+  .slider::-webkit-scrollbar{display:none}
+  .card{flex:0 0 calc(25% - .75rem);min-width:260px;aspect-ratio:3/4.1;border-radius:20px;position:relative;overflow:hidden;scroll-snap-align:start;color:#fff;
+    background:var(--img,none) center/cover,var(--grad)}
+  .card .card-art{position:absolute;inset:0 0 38% 0;display:grid;place-items:center}
+  .card .card-art svg{width:84px;height:84px;color:rgba(255,255,255,.9);stroke-width:1.2}
+  .card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 42%,rgba(8,58,140,.55) 70%,rgba(8,32,90,.92) 100%)}
+  .card .txt{position:absolute;left:0;right:0;bottom:0;padding:1.3rem;z-index:2}
+  .card h3{font-size:1.1rem;font-weight:600;letter-spacing:-.01em;margin-bottom:.35rem}
+  .card p{font-size:.8rem;opacity:.85;line-height:1.45}
+  /* TROQUE A FOTO dos cards: style="--img:url('fotos/card1.jpg')" em cada card */
+
+  /* sobre */
+  .about{background:var(--soft)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+  .about-visual{position:relative;aspect-ratio:1/1.05;border-radius:28px;overflow:hidden;
+    background:var(--about-img,none) center/cover,linear-gradient(160deg,var(--navy),var(--blue-dark) 60%,var(--blue))}
+  /* TROQUE A FOTO do sobre: --about-img:url('fotos/sobre.jpg') */
+  .about-visual .pole{position:absolute;top:0;bottom:0;--pw:34px;--ph:100%;border-radius:0}
+  .about-visual .pole.l{left:8%}.about-visual .pole.r{right:8%}
+  .about-visual .badge{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#fff;border-radius:26px;padding:1.6rem 2rem;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+  .badge b{font-family:var(--font-head);font-size:3.6rem;font-weight:700;color:var(--blue);line-height:1;letter-spacing:-.04em}
+  .badge .st{color:#f5b301;letter-spacing:.15em;font-size:1.1rem;margin:.2rem 0}
+  .badge small{display:block;color:var(--muted);font-size:.78rem}
+  .about h2{font-size:clamp(2rem,4vw,3.1rem);font-weight:600;margin:.8rem 0 1.3rem}
+  .about p{color:#3b4a66;margin-bottom:1rem;font-size:.98rem}
+  .ticks{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.7rem 1.2rem;margin:1.6rem 0 2rem}
+  .ticks li{display:flex;gap:.6rem;align-items:center;font-size:.9rem;font-weight:500}
+  .ticks li::before{content:"";width:20px;height:20px;border-radius:50%;flex:none;background:var(--red) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center/12px no-repeat}
+
+  /* serviços */
+  .services{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem}
+  .svc{display:flex;align-items:center;gap:.9rem;background:var(--soft);border-radius:16px;padding:.7rem;font-size:.92rem;font-weight:500;transition:transform .2s,background .2s,box-shadow .2s}
+  .svc:hover{transform:translateY(-3px);background:#fff;box-shadow:0 10px 30px rgba(11,27,54,.10)}
+  .svc .ico{width:52px;height:52px;border-radius:13px;background:#fff;display:grid;place-items:center;flex:none;color:var(--blue)}
+  .svc:nth-child(3n) .ico{color:var(--red)}
+  .svc .ico svg{width:24px;height:24px}
+  .svc-cta{display:flex;justify-content:center;gap:.8rem;margin-top:2.4rem;flex-wrap:wrap}
+
+  /* avaliações */
+  .reviews{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+  .reviews::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 60% at 90% 0,rgba(11,79,185,.55),transparent 70%),radial-gradient(40% 50% at 0 100%,rgba(228,32,43,.28),transparent 70%)}
+  .reviews .wrap{position:relative}
+  .reviews .eyebrow{color:#8fb6ff}
+  .reviews .sec-head p{color:#b5c2dc}
+  .score{display:flex;align-items:center;gap:1rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:.9rem 1.4rem;border-radius:20px}
+  .score b{font-family:var(--font-head);font-size:2.6rem;font-weight:700;line-height:1}
+  .score .st{color:#ffc933;letter-spacing:.12em}
+  .score small{display:block;color:#b5c2dc;font-size:.78rem}
+  .rev-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem}
+  .rev{background:#fff;color:var(--ink);border-radius:20px;padding:1.5rem;display:flex;flex-direction:column;gap:1rem}
+  .rev .st{color:#f5b301;letter-spacing:.14em;font-size:.95rem}
+  .rev p{font-size:.92rem;color:#2a3a57;flex:1}
+  .rev .who{display:flex;align-items:center;gap:.7rem}
+  .rev .av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:.9rem;background:var(--blue);flex:none}
+  .rev:nth-child(even) .av{background:var(--red)}
+  .rev .who b{display:block;font-size:.88rem;line-height:1.2}
+  .rev .who small{color:var(--muted);font-size:.74rem}
+  .reply{background:var(--soft);border-radius:12px;padding:.7rem .9rem;font-size:.78rem;color:#3b4a66}
+  .reply b{color:var(--blue);display:block;font-size:.72rem;margin-bottom:2px}
+
+  /* agendamento */
+  .book{padding:0}
+  .book-box{margin:110px auto;border-radius:32px;overflow:hidden;position:relative;color:#fff;padding:4.5rem 3rem;text-align:center;
+    background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dark) 100%)}
+  .book-box::before,.book-box::after{content:"";position:absolute;top:-10%;bottom:-10%;width:60px;transform:rotate(14deg);
+    background:repeating-linear-gradient(135deg,rgba(255,255,255,.14) 0 14px,rgba(228,32,43,.5) 14px 28px)}
+  .book-box::before{left:5%}.book-box::after{right:5%}
+  .book-box > *{position:relative;z-index:2}
+  .book h2{font-size:clamp(2.2rem,5vw,4rem);font-weight:600;text-transform:uppercase;max-width:760px;margin:.8rem auto 1rem}
+  .book p{max-width:520px;margin:0 auto 2rem;color:#d3e1ff}
+  .book .eyebrow{color:#fff;opacity:.8}
+  .book-links{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+
+  /* localização */
+  .loc-grid{display:grid;grid-template-columns:.9fr 1.3fr;gap:1.2rem;align-items:stretch}
+  .loc-info{background:var(--soft);border-radius:var(--radius);padding:2.2rem;display:flex;flex-direction:column;gap:1.4rem}
+  .loc-info h2{font-size:clamp(1.9rem,3.5vw,2.7rem);font-weight:600}
+  .loc-item{display:flex;gap:1rem;align-items:flex-start}
+  .loc-item .ico{width:44px;height:44px;border-radius:12px;background:#fff;color:var(--red);display:grid;place-items:center;flex:none}
+  .loc-item .ico svg{width:20px;height:20px}
+  .loc-item small{display:block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .loc-item span{font-weight:500;font-size:.95rem}
+  .loc-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:auto}
+  .map{border-radius:var(--radius);overflow:hidden;min-height:440px;border:1px solid var(--line)}
+  .map iframe{width:100%;height:100%;border:0;min-height:440px}
+
+  /* footer */
+  footer{background:var(--navy);color:#c6d2ea;padding:70px 0 28px;margin-top:0}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:2.5rem;padding-bottom:2.6rem;border-bottom:1px solid rgba(255,255,255,.12)}
+  footer .logo-txt small{color:#fff}
+  footer .logo-txt b{color:#fff}
+  footer .logo-txt b i{color:var(--red)}
+  footer .logo img{filter:none}
+  footer h4{font-family:var(--font-head);color:#fff;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem}
+  footer ul{list-style:none;display:grid;gap:.55rem;font-size:.9rem}
+  footer a:hover{color:#fff}
+  .foot-about{font-size:.9rem;margin-top:1rem;max-width:300px}
+  .socials{display:flex;gap:.6rem;margin-top:1.2rem}
+  .socials a{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:grid;place-items:center;transition:background .2s}
+  .socials a:hover{background:var(--red);border-color:var(--red)}
+  .socials svg{width:18px;height:18px;color:#fff}
+  .foot-bottom{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding-top:1.6rem;font-size:.8rem;color:#8fa0c2}
+
+  /* whatsapp flutuante */
+  .fab{position:fixed;right:18px;bottom:18px;z-index:60;width:58px;height:58px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 10px 28px rgba(0,0,0,.28);transition:transform .2s}
+  .fab:hover{transform:scale(1.08)}
+  .fab svg{width:30px;height:30px;color:#fff}
+
+  /* ---------- responsivo ---------- */
+  @media (max-width:1020px){
+    .nav ul{display:none}
+    .burger{display:flex}
+    .nav .btn.desk{display:none}
+    .mobile-menu.open{display:grid;gap:.2rem;margin-top:.6rem;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-radius:26px;padding:.8rem;box-shadow:0 12px 40px rgba(11,27,54,.15)}
+    .mobile-menu a{padding:.8rem 1rem;border-radius:14px;font-weight:500}
+    .mobile-menu a:hover{background:var(--soft)}
+    .hero .wrap{grid-template-columns:1fr}
+    .hero-right{min-height:380px}
+    .stats{right:10px}
+    .about-grid,.loc-grid{grid-template-columns:1fr}
+    .services{grid-template-columns:repeat(2,1fr)}
+    .rev-grid{grid-template-columns:repeat(2,1fr)}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .card{flex-basis:calc(50% - .5rem)}
+  }
+  @media (max-width:640px){
+    section{padding:76px 0}
+    .hero{padding-top:120px;border-radius:24px}
+    .sec-head{flex-direction:column;align-items:flex-start}
+    .arrow{width:52px;height:64px}
+    .services,.rev-grid,.ticks,.foot-grid{grid-template-columns:1fr}
+    .card{flex-basis:78%}
+    .book-box{padding:3.2rem 1.4rem;margin:76px auto}
+    .book-box::before,.book-box::after{opacity:.5}
+    .stats{position:static;grid-template-columns:1fr 1fr;margin-top:1rem}
+    .hero-photo{position:relative;min-height:340px}
+    .hero-right{min-height:0}
+    .stat{text-align:left}
+  }
+</style>
+</head>
+<body>
+
+<!-- ICONES (reutilizados nos serviços e botões) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-scissors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.5 8L20 19M8.5 16L20 5"/></symbol>
+    <symbol id="i-razor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14L14 4l6 6-10 10z"/><path d="M7 11l6 6"/></symbol>
+    <symbol id="i-comb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="6" rx="1.5"/><path d="M6 13v6M9.5 13v6M13 13v6M16.5 13v6M20 13v4"/></symbol>
+    <symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3S5 11 5 15a7 7 0 0014 0c0-4-7-12-7-12z"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 119.5 4a6.5 6.5 0 0010.5 10.5z"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9H3z"/><path d="M10 20v-6h4v6"/></symbol>
+    <symbol id="i-smile" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14c2.5 3 5.5 3 8 0"/><path d="M9 10h.01M15 10h.01"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c4-6 16-6 20 0-4 6-16 6-20 0z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5A7 7 0 005 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 00-8.5 14.9L2 22l5.25-1.5A9.9 9.9 0 1012.04 2zm5.8 14.1c-.25.7-1.45 1.35-2 1.4-.5.05-1.15.07-1.85-.12a15 15 0 01-1.7-.63c-3-1.3-4.95-4.3-5.1-4.5-.15-.2-1.2-1.6-1.2-3s.75-2.1 1-2.4c.25-.28.55-.35.75-.35h.55c.18 0 .42-.07.65.5.25.6.85 2.1.92 2.25.08.15.12.33.02.52-.1.2-.15.32-.3.5-.15.17-.32.38-.45.5-.15.15-.3.3-.13.6.17.3.77 1.27 1.65 2.05 1.1 1 2.05 1.3 2.35 1.45.3.15.47.12.65-.07.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.7.8 2 .95.3.15.5.22.57.35.08.12.08.72-.17 1.4z"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7L12 17.5 5.7 21l1.5-7L2 9.3l7-.8z"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></symbol>
+    <symbol id="i-crown" viewBox="0 0 48 32" fill="currentColor"><path d="M2 6l10 10L24 2l12 14L46 6l-4 24H6z"/></symbol>
+  </defs>
+</svg>
+
+<!-- ============ NAVBAR ============ -->
+<header class="top">
+  <div class="wrap">
+    <nav class="nav">
+      <a href="#inicio" class="logo" aria-label="Barbearia Hora do Corte">
+        <!-- Para usar sua logo real: salve como logo.png na mesma pasta -->
+        <img src="logo.png" alt="Barbearia Hora do Corte" onload="this.parentNode.classList.add('has-img')" onerror="this.remove()">
+        <span class="logo-fb">
+          <span class="pole" style="--pw:11px;--ph:38px"></span>
+          <span class="logo-txt"><small>BARBEARIA</small><b>Hora do <i>Corte</i></b></span>
+          <span class="pole" style="--pw:11px;--ph:38px"></span>
+        </span>
+      </a>
+      <ul>
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#avaliacoes">Avaliações</a></li>
+        <li><a href="#localizacao">Localização</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+      <a class="btn btn-dark desk" data-wa href="#">Agendar horário</a>
+      <button class="burger" id="burger" aria-label="Abrir menu"><span></span></button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#inicio">Início</a><a href="#sobre">Sobre</a><a href="#servicos">Serviços</a>
+      <a href="#avaliacoes">Avaliações</a><a href="#localizacao">Localização</a><a href="#contato">Contato</a>
+      <a class="btn btn-red" data-wa href="#" style="justify-content:center;margin-top:.4rem">Agendar horário</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<div class="hero-shell" id="inicio">
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-left">
+        <span class="eyebrow">Barbearia em Praia Grande · Tupiry</span>
+        <h1>Corte <span class="chip"></span> bem feito, <em>do seu jeito</em></h1>
+        <div class="hero-actions">
+          <a class="btn btn-dark" data-wa href="#"><svg><use href="#i-calendar"/></svg>Agendar horário</a>
+          <a class="btn btn-light" href="#servicos"><svg><use href="#i-scissors"/></svg>Ver serviços</a>
+        </div>
+        <p class="hero-desc">Corte na tesoura ou na navalha, degradê, barba, cortes infantis e atendimento à noite. Quem passa por aqui sai bem atendido, e a nota 5,0 no Google está aí pra provar.</p>
+      </div>
+
+      <div class="hero-right">
+        <!-- TROQUE A FOTO: style="--hero-img:url('fotos/hero.jpg')" -->
+        <div class="hero-photo" style="--hero-img:url">
+          <img src="Imagens/corte hero.jpg" alt="">
+        </div>
+        <div class="stats">
+          <div class="stat"><b>5,0<span>★</span></b><small>Nota no Google</small></div>
+          <div class="stat"><b>127</b><small>Avaliações de clientes</small></div>
+          <div class="stat"><b>24</b><small>Serviços disponíveis</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DESTAQUES (carrossel) ============ -->
+<section id="destaques">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Tudo que você precisa<br>numa barbearia só.</h2>
+        <p>Do corte rápido de antes do trabalho ao visual completo com barba na navalha. Sem enrolação, sem fila de espera longa.</p>
+      </div>
+      <div class="arrows">
+        <button class="arrow" id="prev" aria-label="Anterior"><svg><use href="#i-left"/></svg></button>
+        <button class="arrow" id="next" aria-label="Próximo"><svg><use href="#i-right"/></svg></button>
+      </div>
+    </div>
+
+    <div class="slider" id="slider">
+      <!-- TROQUE A FOTO de cada card: adicione --img:url('fotos/arquivo.jpg') no style -->
+      <article class="card" style="--grad:linear-gradient(160deg,#2a6fd6,#0B4FB9 55%,#0B1B36)">
+        <div class="card-art"><svg><use href="#i-scissors"/></svg></div>
+        <div class="txt"><h3>Corte na régua</h3><p>Tesoura, degradê, militar ou personalizado. Você explica, a gente executa.</p></div>
+      </article>
+      <article class="card" style="--grad:linear-gradient(160deg,#e4202b,#8c1019 60%,#0B1B36)">
+        <div class="card-art"><svg><use href="#i-razor"/></svg></div>
+        <div class="txt"><h3>Barba e navalha</h3><p>Barba desenhada, aparada ou feita na navalha, com acabamento limpo.</p></div>
+      </article>
+      <article class="card" style="--grad:linear-gradient(160deg,#4a8df0,#0B4FB9 60%,#083a8c)">
+        <div class="card-art"><svg><use href="#i-smile"/></svg></div>
+        <div class="txt"><h3>Cortes infantis</h3><p>Paciência e atenção com a criançada. Pai e filho podem cortar na mesma ida.</p></div>
+      </article>
+      <article class="card" style="--grad:linear-gradient(160deg,#0B4FB9,#0B1B36 80%)">
+        <div class="card-art"><svg><use href="#i-comb"/></svg></div>
+        <div class="txt"><h3>Cacheados e afro</h3><p>Cabelos cacheados e especialista em penteados afro, com técnica e cuidado.</p></div>
+      </article>
+      <article class="card" style="--grad:linear-gradient(160deg,#c5121c,#0B4FB9 80%)">
+        <div class="card-art"><svg><use href="#i-moon"/></svg></div>
+        <div class="txt"><h3>Atendimento noturno</h3><p>Saiu tarde do trabalho? Tem serviço noturno e reserva online.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOBRE ============ -->
+<section class="about" id="sobre">
+  <div class="wrap about-grid">
+    <!-- TROQUE A FOTO: style="--about-img:url('fotos/sobre.jpg')" (e apague os postes e o selo se quiser só a foto) -->
+    <div class="about-visual" style="--about-img:none">
+      <span class="pole l"></span><span class="pole r"></span>
+      <div class="badge">
+        <b>5,0</b>
+        <div class="st">★★★★★</div>
+        <small>127 avaliações no Google</small>
+      </div>
+    </div>
+
+    <div>
+      <span class="eyebrow">Sobre a barbearia</span>
+      <h2>Aqui o cliente vira freguês.</h2>
+      <p>A Barbearia Hora do Corte fica na Av. São Francisco de Assis, no Tupiry, em Praia Grande. É daquelas casas em que o barbeiro conversa, escuta o que você quer e entrega um corte bem acabado.</p>
+      <p>Nas avaliações o que mais aparece é o mesmo: atendimento atencioso, trabalho rápido e cuidado com as crianças. Tem cliente que corta o próprio cabelo e o do filho por aqui sempre.</p>
+      <ul class="ticks">
+        <li>Atendimento atencioso</li>
+        <li>Corte rápido e bem feito</li>
+        <li>Ótimo com crianças</li>
+        <li>Reservas on-line</li>
+        <li>Serviço noturno</li>
+        <li>Navalha e tesoura</li>
+      </ul>
+      <a class="btn btn-dark" data-wa href="#"><svg><use href="#i-calendar"/></svg>Quero agendar</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVIÇOS ============ -->
+<section id="servicos">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Serviços pra cada<br>tipo de cabelo e barba.</h2>
+        <p>Não achou o que procura na lista? Chama no WhatsApp que a gente vê o que dá pra fazer.</p>
+      </div>
+      <div style="display:flex;gap:.7rem;flex-wrap:wrap">
+        <a class="btn btn-dark" data-wa href="#"><svg><use href="#i-calendar"/></svg>Agendar horário</a>
+        <a class="btn btn-light" data-phone href="#"><svg><use href="#i-phone"/></svg>Ligar</a>
+      </div>
+    </div>
+    <div class="services" id="services"></div>
+  </div>
+</section>
+
+<!-- ============ AVALIAÇÕES ============ -->
+<section class="reviews" id="avaliacoes">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">O que os clientes dizem</span>
+        <h2 style="margin-top:.8rem">Nota máxima, escrita por quem já sentou na cadeira.</h2>
+      </div>
+      <div class="score">
+        <b>5,0</b>
+        <div><div class="st">★★★★★</div><small>127 avaliações no Google</small></div>
+      </div>
+    </div>
+    <div class="rev-grid" id="reviews"></div>
+    <div style="text-align:center;margin-top:2.2rem">
+      <a class="btn btn-outline" data-reviews target="_blank" rel="noopener" href="#">Ver todas as avaliações no Google</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AGENDAMENTO ============ -->
+<section class="book" id="agendamento">
+  <div class="wrap">
+    <div class="book-box">
+      <span class="eyebrow">Agendamento</span>
+      <h2>Garanta seu horário agora</h2>
+      <p>Escolha o canal que for mais prático: WhatsApp, telefone ou direct no Instagram. Respondemos o mais rápido possível.</p>
+      <div class="book-links">
+        <a class="btn btn-red" data-wa href="#"><svg><use href="#i-wa"/></svg>Agendar no WhatsApp</a>
+        <a class="btn btn-outline" data-phone href="#"><svg><use href="#i-phone"/></svg><span data-phone-label>Ligar agora</span></a>
+        <a class="btn btn-outline" data-ig target="_blank" rel="noopener" href="#"><svg><use href="#i-ig"/></svg>Chamar no Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOCALIZAÇÃO ============ -->
+<section id="localizacao" style="padding-top:0">
+  <div class="wrap">
+    <div class="loc-grid">
+      <div class="loc-info">
+        <div>
+          <span class="eyebrow">Localização</span>
+          <h2 style="margin-top:.7rem">Vem tomar um corte com a gente.</h2>
+        </div>
+        <div class="loc-item"><span class="ico"><svg><use href="#i-pin"/></svg></span>
+          <div><small>Endereço</small><span id="addr">Av. São Francisco de Assis, 3746<br>Tupiry, Praia Grande - SP<br>CEP 11724-425</span></div></div>
+        <div class="loc-item"><span class="ico"><svg><use href="#i-phone"/></svg></span>
+          <div><small>Telefone / WhatsApp</small><span data-phone-label>(13) 99662-5020</span></div></div>
+        <div class="loc-item"><span class="ico"><svg><use href="#i-calendar"/></svg></span>
+          <div><small>Horários</small><span>Chame no WhatsApp para confirmar a disponibilidade</span></div></div>
+        <!-- Para mostrar horário fixo, troque o texto acima, ex: "Seg a Sáb, 9h às 20h" -->
+        <div class="loc-actions">
+          <a class="btn btn-dark" data-route target="_blank" rel="noopener" href="#"><svg><use href="#i-pin"/></svg>Como chegar</a>
+          <a class="btn btn-light" data-wa href="#"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+        </div>
+      </div>
+      <div class="map">
+        <iframe id="mapFrame" title="Mapa da Barbearia Hora do Corte" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer id="contato">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#inicio" class="logo">
+          <span class="logo-fb" style="display:flex">
+            <span class="pole" style="--pw:11px;--ph:38px"></span>
+            <span class="logo-txt"><small>BARBEARIA</small><b>Hora do <i>Corte</i></b></span>
+            <span class="pole" style="--pw:11px;--ph:38px"></span>
+          </span>
+        </a>
+        <p class="foot-about">Corte, barba e atendimento de qualidade no Tupiry, em Praia Grande.</p>
+        <div class="socials">
+          <a data-ig target="_blank" rel="noopener" href="#" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
+          <a data-wa href="#" aria-label="WhatsApp"><svg><use href="#i-wa"/></svg></a>
+          <a data-route target="_blank" rel="noopener" href="#" aria-label="Google Maps"><svg><use href="#i-pin"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#avaliacoes">Avaliações</a></li>
+          <li><a href="#localizacao">Localização</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Agendamento</h4>
+        <ul>
+          <li><a data-wa href="#">WhatsApp</a></li>
+          <li><a data-phone href="#">Ligar</a></li>
+          <li><a data-ig target="_blank" rel="noopener" href="#">Instagram</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li>Av. São Francisco de Assis, 3746</li>
+          <li>Tupiry, Praia Grande - SP</li>
+          <li data-phone-label>(13) 99662-5020</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Barbearia Hora do Corte. Todos os direitos reservados.</span>
+      <span>@barbeariahoradocorte013</span>
+    </div>
+  </div>
+</footer>
+
+<a class="fab" data-wa href="#" aria-label="Agendar pelo WhatsApp"><svg><use href="#i-wa"/></svg></a>
+
+<script>
+/* =====================================================================
+   CONFIG: edite aqui telefone, WhatsApp, Instagram e endereço
+   ===================================================================== */
+const CONFIG = {
+  phoneDisplay: '(13) 99662-5020',
+  phoneDigits:  '5513996625020',                       // DDI 55 + DDD + número, só números
+  whatsappMsg:  'Olá! Quero agendar um horário na Barbearia Hora do Corte.',
+  instagram:    'https://www.instagram.com/barbeariahoradocorte013/',
+  address:      'Av. São Francisco de Assis, 3746 - Tupiry, Praia Grande - SP, 11724-425',
+  // Se tiver um link de agendamento online (Booksy, Trinks, etc.), coloque aqui e ele vira o botão principal:
+  bookingUrl:   ''
+};
+
+/* =====================================================================
+   SERVICES: um serviço por linha  ['Nome', 'icone']
+   ícones: scissors, razor, comb, drop, moon, calendar, home, smile, spark, eye
+   ===================================================================== */
+const SERVICES = [
+  ['Alisamentos de cabelo','spark'],
+  ['Aparar a barba','razor'],
+  ['Barba','razor'],
+  ['Barba com navalha','razor'],
+  ['Cabelos cacheados','comb'],
+  ['Coloração de cabelo','drop'],
+  ['Corte com navalha','razor'],
+  ['Corte com tesoura','scissors'],
+  ['Corte de cabelo','scissors'],
+  ['Corte de cabelo longo','scissors'],
+  ['Corte em degradê','comb'],
+  ['Corte militar','scissors'],
+  ['Corte militar reto','scissors'],
+  ['Corte personalizado','spark'],
+  ['Cortes infantis','smile'],
+  ['Crianças','smile'],
+  ['Depilação de sobrancelha','eye'],
+  ['Especialista em penteados afro','comb'],
+  ['Raspar a cabeça','razor'],
+  ['Raspar o cabelo','razor'],
+  ['Reservas on-line','calendar'],
+  ['Serviço noturno','moon'],
+  ['Serviços domésticos','home'],
+  ['Shampoo e condicionador','drop']
+];
+
+/* =====================================================================
+   REVIEWS: avaliações do Google. Campos: nome, info, texto, resposta (opcional)
+   ===================================================================== */
+const REVIEWS = [
+  { nome:'Cliente do Google', info:'Avaliação 5 estrelas',
+    texto:'Os cara manda bem estão de parabéns tmj quebrada…',
+    resposta:'Obrigada pela preferência e volte sempre 😁' },
+  { nome:'Arthur Henrique', info:'3 avaliações',
+    texto:'Os melhores, ótimo atendimento, muito comunicativos, nota 10 !!! Venham conferir…' },
+  { nome:'Renata Hermínio', info:'Local Guide · 17 avaliações',
+    texto:'Profissionais muito atenciosos com minhas crianças, educação ímpar de todos.' },
+  { nome:'Alexandre Mirasmar', info:'1 avaliação',
+    texto:'Os meninos são bom, fui super bem atendido, fizeram um otimo trabalho e recomendo muito irem no salão' },
+  { nome:'Bruno Silva', info:'3 avaliações',
+    texto:'Melhor atendimento, os barbeiros mandão demais no corte, fora que são rápidos 🤩🤩 Super indico, corto o meu e o do meu filho sempre…' }
+];
+
+/* ============ daqui pra baixo normalmente não precisa mexer ============ */
+const $  = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+
+// links
+const waUrl = CONFIG.bookingUrl || `https://wa.me/${CONFIG.phoneDigits}?text=${encodeURIComponent(CONFIG.whatsappMsg)}`;
+const routeUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONFIG.address)}`;
+$$('[data-wa]').forEach(a => { a.href = waUrl; a.target = '_blank'; a.rel = 'noopener'; });
+$$('[data-phone]').forEach(a => a.href = `tel:+${CONFIG.phoneDigits}`);
+$$('[data-ig]').forEach(a => a.href = CONFIG.instagram);
+$$('[data-route]').forEach(a => a.href = routeUrl);
+$$('[data-reviews]').forEach(a => a.href = routeUrl);
+$$('[data-phone-label]').forEach(el => { if (!el.closest('.btn')) el.textContent = CONFIG.phoneDisplay; });
+$('#mapFrame').src = `https://maps.google.com/maps?q=${encodeURIComponent(CONFIG.address)}&z=16&output=embed`;
+$('#year').textContent = new Date().getFullYear();
+
+// serviços
+$('#services').innerHTML = SERVICES.map(([nome, ico]) =>
+  `<div class="svc"><span class="ico"><svg><use href="#i-${ico}"/></svg></span>${nome}</div>`).join('');
+
+// avaliações
+const esc = s => s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+$('#reviews').innerHTML = REVIEWS.map(r => `
+  <article class="rev">
+    <div class="st">★★★★★</div>
+    <p>“${esc(r.texto)}”</p>
+    ${r.resposta ? `<div class="reply"><b>Resposta do proprietário</b>${esc(r.resposta)}</div>` : ''}
+    <div class="who"><span class="av">${esc(r.nome.trim()[0])}</span><div><b>${esc(r.nome)}</b><small>${esc(r.info)}</small></div></div>
+  </article>`).join('');
+
+// carrossel
+const slider = $('#slider');
+const step = () => (slider.querySelector('.card')?.offsetWidth || 280) + 16;
+$('#next').onclick = () => slider.scrollBy({left: step(), behavior:'smooth'});
+$('#prev').onclick = () => slider.scrollBy({left: -step(), behavior:'smooth'});
+
+// menu mobile
+$('#burger').onclick = () => $('#mobileMenu').classList.toggle('open');
+$$('#mobileMenu a').forEach(a => a.addEventListener('click', () => $('#mobileMenu').classList.remove('open')));
+</script>
+</body>
+</html>
